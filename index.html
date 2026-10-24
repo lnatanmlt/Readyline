@@ -258,7 +258,7 @@ body::after{filter:invert(1);opacity:.07}
 <script src="https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore-compat.js"></script>
 <script>
 /* ---- Site details: fill these in. Anything left empty is hidden from the footer. ---- */
-const BUILD='24-oct-2026-v7';
+const BUILD='24-oct-2026-v8';
 const SITE={
   name:'Readyline',          // the site name, shown everywhere
   email:'mulatuelnathana@gmail.com',
@@ -416,13 +416,20 @@ async function listFlash(){
   }catch(x){return[]}finally{clearTimeout(tm)}
 }
 async function candidates(){
-  if(!candCache)candCache=[...new Set([S.model,'gemini-flash-latest',...await listFlash(),'gemini-flash-lite-latest'])].filter(Boolean);
+  if(!candCache){const l=await listFlash();candCache=[...new Set([S.model,'gemini-2.5-flash','gemini-2.5-flash-lite',...l,'gemini-flash-latest','gemini-flash-lite-latest'])].filter(Boolean)}
   return candCache;
+}
+function resetNote(){
+  try{
+    const f=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date());
+    const hh=+f.find(x=>x.type==='hour').value%24,mm=+f.find(x=>x.type==='minute').value;
+    return new Date(Date.now()+((24-hh)*60-mm)*60000).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+  }catch(e){return 'later today'}
 }
 async function genDay(e,d,out){
   const p=(d.rev?'This is a revision day, so cover the same ideas from a fresh angle with different questions. ':'')+'You are a study coach. Using only the material below for the subject "'+e.subject+'", write (1) a clear study note in simple markdown (## headings and - bullets, about 300 words) and (2) exactly '+S.cards+' quiz questions. Each has "q", the correct answer "a" (short), and "w", an array of exactly 3 plausible wrong answers. Reply as JSON: {"note":"...","cards":[{"q":"...","a":"...","w":["...","...","..."]}]}\n\nMATERIAL:\n'+d.text.slice(0,14000);
-  const cand=await candidates();let err='';
-  for(let a=0;a<7;a++){
+  const cand=await candidates();let err='',retried=false;
+  for(let a=0;a<10;a++){
     const m=cand[Math.min(cmi,cand.length-1)];
     const r=await callGemini(p,true,m,TMO);
     if(r.ok){
@@ -436,9 +443,15 @@ async function genDay(e,d,out){
       continue;
     }
     err=(r.j.error&&r.j.error.message)||('Error '+r.status);
+    if(r.status===429){
+      if(cmi<cand.length-1){cmi++;out.textContent='That model\'s free limit is used up. Trying another...';continue}
+      const s=+((err.match(/retry in ([\d.]+)s/i)||[])[1]||0);
+      if(s&&s<=65&&!retried){retried=true;out.textContent='Waiting '+Math.ceil(s)+'s for the per-minute limit...';await wait(s*1000+1000);cmi=0;continue}
+      return 'Google\'s free limit is used up on every model I tried. It resets at midnight Pacific time, about '+resetNote()+' for you. Open the app after that and tap Prepare today\'s material.';
+    }
     const gone=r.status===404||(r.status===400&&/model|not found|supported/i.test(err));
     if((gone||r.status===0)&&cmi<cand.length-1){cmi++;out.textContent='Trying another AI model...';continue}
-    if((r.status===429&&a<1)||r.status>=500||r.status===0){out.textContent='Waiting a moment, then retrying...';await wait(r.status===429?30000:RETRY);continue}
+    if(r.status>=500||r.status===0){out.textContent='Waiting a moment, then retrying...';await wait(RETRY);continue}
     break;
   }
   return err;
@@ -479,11 +492,12 @@ async function testKey(btn){
   const flash=await listFlash();
   L.push(flash.length?'1. Reaching Google: OK ('+sec(t)+')':'1. Reaching Google: no list came back ('+sec(t)+'). The key may be wrong, or your connection is blocking Google.');
   const cand=await candidates();let ok=false;
-  for(const m of cand.slice(0,4)){
+  for(const m of cand.slice(0,5)){
     t=Date.now();const r=await callGemini('Reply with the single word: ok',false,m,Math.round(TMO*.6));
     if(r.ok){L.push('2. Model '+m+': works ('+sec(t)+')');S.model=m;save();$('#md').value=m;ok=true;break}
-    L.push('2. Model '+m+': '+((r.j.error&&r.j.error.message)||('error '+r.status))+' ('+sec(t)+')');
+    L.push('2. Model '+m+': '+(r.status===429?'free limit used up for today':((r.j.error&&r.j.error.message)||('error '+r.status)))+' ('+sec(t)+')');
   }
+  if(!ok&&L.some(x=>x.includes('used up')))L.push('\nFree limits reset at midnight Pacific time, about '+resetNote()+' for you.');
   if(btn){btn.disabled=false;btn.textContent='Test key'}
   tell((ok?'Everything works.\n\n':'Not working yet.\n\n')+L.join('\n'));
 }
