@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>StudyPlan</title>
+<title>Readyline</title>
 <style>
 :root{--acg:linear-gradient(145deg,color-mix(in srgb,var(--ac) 82%,#fff),color-mix(in srgb,var(--ac) 90%,#000));--base:#000;--tx:#f5f5f7;--mu:#a1a1a6;--ac:#0a84ff;--ok:#30d158;--bad:#ff453a;--gl:rgba(255,255,255,.07);--gl2:rgba(255,255,255,.09);--gh:rgba(255,255,255,.17);--gb:rgba(255,255,255,.16);--on:rgba(255,255,255,.2);--sh:0 10px 40px rgba(0,0,0,.45);--ln:rgba(255,255,255,.14);--bgi:radial-gradient(70% 45% at 50% -8%,rgba(90,140,230,.42),transparent 70%),radial-gradient(55% 40% at 100% 100%,rgba(90,140,230,.2),transparent 70%)}
 [data-theme=graphite]{--base:#17181b;--bgi:radial-gradient(70% 45% at 50% -8%,rgba(200,205,225,.22),transparent 70%),radial-gradient(55% 40% at 0% 100%,rgba(160,170,195,.15),transparent 70%)}
@@ -110,7 +110,7 @@ body:not([data-view=app]) nav,body:not([data-view=app]) main{display:none}
 #dlg{position:fixed;inset:0;z-index:50;align-items:center;justify-content:center;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 #dlg:not([hidden]){display:flex}
 #dlg .box{width:min(380px,calc(100% - 40px));padding:26px;border-radius:28px;background:color-mix(in srgb,var(--base) 90%,transparent);border:1px solid var(--gb);box-shadow:0 20px 60px rgba(0,0,0,.3);animation:rise .3s cubic-bezier(.32,.72,0,1)}
-#dm{margin:0 0 20px}
+#dm{margin:0 0 20px;white-space:pre-line}
 .av{display:none;position:fixed;top:19px;right:22px;z-index:30;padding:6px 12px;border:0;border-radius:12px;background:none;color:var(--tx);font:inherit;font-size:15px;font-weight:600;letter-spacing:0;cursor:pointer}
 .av:hover{background:var(--gl)}
 body[data-view=app] .av{display:grid}
@@ -136,7 +136,7 @@ body::after{filter:invert(1);opacity:.07}
 </head>
 <body data-view="loading">
 <header id="top">
-<b class="brand" onclick="route('landing')">StudyPlan</b>
+<b class="brand" onclick="route('landing')"><span class="bn">Readyline</span></b>
 <div class="tl"><button class="lk2" onclick="sc('features')">Features</button><button class="lk2" onclick="sc('how')">How it works</button></div>
 <div class="ta"><button class="b g" onclick="route('login')">Log in</button><button class="b" onclick="route('signup')">Sign up</button></div>
 </header>
@@ -145,7 +145,7 @@ body::after{filter:invert(1);opacity:.07}
 <div class="hero">
 <p class="eyebrow">Free study planner</p>
 <h1 class="hh">Study a little every day. Walk into the exam ready.</h1>
-<p class="sub">Add your exams and your material. StudyPlan builds a note, flashcards and a graded quiz for every day until the exam.</p>
+<p class="sub">Add your exams and your material. <span class="bn">Readyline</span> builds a note, flashcards and a graded quiz for every day until the exam.</p>
 <div class="gap"><button class="b" onclick="route('signup')">Get started free</button><button class="b g" onclick="route('login')">Log in</button></div>
 <div class="card mock">
 <div class="tile" style="cursor:default"><div><h3>Biology</h3><p class="mu" style="margin:4px 0 0">Today: Cell division, 8 flashcards</p></div><div class="n">8<small>days left</small></div></div>
@@ -172,7 +172,7 @@ body::after{filter:invert(1);opacity:.07}
 </div></div>
 
 <div class="blk" id="faq"><h2>Questions</h2><div class="faqw">
-<details class="card"><summary>Do I have to pay?</summary><p class="fp">No. StudyPlan runs on a free Google Gemini key, so there is nothing to subscribe to.</p></details>
+<details class="card"><summary>Do I have to pay?</summary><p class="fp">No. <span class="bn">Readyline</span> runs on a free Google Gemini key, so there is nothing to subscribe to.</p></details>
 <details class="card"><summary>Why does it need an API key?</summary><p class="fp">The key lets the app ask Google's AI to write your notes, flashcards and quiz questions. You create it free at aistudio.google.com/apikey in about a minute and paste it into Settings. It stays on your device.</p></details>
 <details class="card"><summary>Is my study material private?</summary><p class="fp">Your exams are stored in your account, which only you can open, so they follow you between devices. Your API key stays on your device. Only the text for the day being prepared is sent to Google's AI to write that day's material.</p></details>
 <details class="card"><summary>Does it work on my phone?</summary><p class="fp">Yes, in any phone browser. An Android app is planned.</p></details>
@@ -182,11 +182,11 @@ body::after{filter:invert(1);opacity:.07}
 
 <div class="card ft">
 <div class="fgrid">
-<div><b class="brand">StudyPlan</b><p class="mu">Study a little every day.</p></div>
+<div><b class="brand"><span class="bn">Readyline</span></b><p class="mu">Study a little every day.</p></div>
 <div id="fcon"></div>
 <div id="fsoc"></div>
 </div>
-<p class="mu">© 2026 StudyPlan</p>
+<p class="mu">© 2026 <span class="bn">Readyline</span></p>
 </div>
 </div>
 
@@ -219,7 +219,7 @@ body::after{filter:invert(1);opacity:.07}
 <main>
 <section id="add">
 <h1>Add an exam.</h1>
-<p class="sub">Drop in your material. Every study day is prepared right away.</p>
+<p class="sub">Drop in your material. Your plan is built now, and each day's notes, flashcards and quiz are prepared on the day.</p>
 <div class="card">
 <label for="sub">Subject</label><input id="sub" placeholder="Math">
 <label for="dtb">Exam date</label><div class="dp"><button type="button" id="dtb" class="ph" onclick="dpToggle()">Choose a date</button><input type="hidden" id="dt"><div class="cal" id="cal" hidden></div></div>
@@ -240,7 +240,7 @@ body::after{filter:invert(1);opacity:.07}
 <label for="md">Model</label><input id="md" onchange="S.model=this.value.trim()||'gemini-2.5-flash';save()">
 <label for="nc">Questions per day</label><input id="nc" type="number" min="3" max="20" onchange="S.cards=+this.value||8;save()">
 
-<div class="gap"><button class="b" onclick="testKey()">Test key</button><button class="b g" onclick="ask('Delete all your exams?','Delete').then(y=>{if(y){S.exams=[];save();cur=null;render()}})">Reset all data</button></div>
+<div class="gap"><button class="b" onclick="testKey(this)">Test key</button><button class="b g" onclick="ask('Delete all your exams?','Delete').then(y=>{if(y){S.exams=[];save();cur=null;render()}})">Reset all data</button></div>
 
 </div>
 </section>
@@ -255,7 +255,8 @@ body::after{filter:invert(1);opacity:.07}
 <script>
 /* ---- Site details: fill these in. Anything left empty is hidden from the footer. ---- */
 const SITE={
-  email:'',                 // e.g. 'you@gmail.com'
+  name:'Readyline',          // the site name, shown everywhere
+  email:'mulatuelnathana@gmail.com',
   instagram:'',             // full links, e.g. 'https://instagram.com/yourname'
   tiktok:'',
   x:'',
@@ -337,11 +338,11 @@ function startSync(){
     if(firstSnap&&!list.length){
       firstSnap=false;
       if(!S.exams.length){const old=findLegacy(user);if(old){S.exams=old.exams;if(!S.key&&old.key){S.key=old.key;$('#key').value=S.key}}}
-      save();if(view==='app')render();return;
+      save();if(view==='app')render();autoToday();return;
     }
     if(firstSnap&&list.length&&tab==='add')tab='exams';
     firstSnap=false;S.exams=list;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(x){}
-    setSync('Synced');if(view==='app'&&!Q)render();
+    setSync('Synced');if(view==='app'&&!Q)render();autoToday();
   },err=>setSync('Not synced: '+(err.code==='permission-denied'?'permission denied. Check the Firestore rules.':err.message)));
 }
 function stopSync(){if(unsub){unsub();unsub=null}clearTimeout(syncT);syncT=null;synced={};firstSnap=true}
@@ -387,66 +388,98 @@ function plan(e){
   e.days=Array.from({length:N},(_,i)=>({date:addDays(today(),i),text:ch[i%ch.length],rev:i>=ch.length,note:null,cards:null,scores:[]}));
 }
 let note='',noteE=null;
-async function callGemini(prompt,json){
+let TMO=45000,PACE=3000,RETRY=8000,genBusy=false,candCache=null,cmi=0;
+async function callGemini(prompt,json,model,ms){
+  model=model||S.model;
   const cfg={temperature:.4};if(json)cfg.responseMimeType='application/json';
-  if(/2\.5-flash/.test(S.model))cfg.thinkingConfig={thinkingBudget:0};
-  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),90000);
+  if(/2\.5-flash/.test(model))cfg.thinkingConfig={thinkingBudget:0};
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),ms||TMO);
   try{
-    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+S.model+':generateContent?key='+encodeURIComponent(S.key),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:cfg}),signal:ctl.signal});
+    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+encodeURIComponent(S.key),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:cfg}),signal:ctl.signal});
     let j={};try{j=await r.json()}catch(x){}
     return {status:r.status,ok:r.ok,j};
-  }catch(err){return {status:0,ok:false,j:{error:{message:err.name==='AbortError'?'The request timed out.':'Could not reach Google ('+err.message+'). Check your connection or any ad blocker.'}}}}
+  }catch(err){return {status:0,ok:false,j:{error:{message:err.name==='AbortError'?'No reply from Google (timed out).':'Could not reach Google ('+err.message+'). Check your connection or any ad blocker.'}}}}
   finally{clearTimeout(tm)}
 }
-async function pickModel(){
+async function listFlash(){
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),Math.max(3000,TMO/3));
   try{
-    const j=await(await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+encodeURIComponent(S.key))).json();
-    const c=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')&&/^models\/gemini-[\d.]+-flash$/.test(m.name)).map(m=>m.name.slice(7));
-    c.sort((a,b)=>parseFloat(b.match(/[\d.]+/)[0])-parseFloat(a.match(/[\d.]+/)[0]));
-    return c[0]||'';
-  }catch(x){return ''}
+    const j=await(await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+encodeURIComponent(S.key),{signal:ctl.signal})).json();
+    const c=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')&&/^models\/gemini-[\d.]+-flash(-lite)?$/.test(m.name)).map(m=>m.name.slice(7));
+    c.sort((a,b)=>parseFloat(b.match(/[\d.]+/)[0])-parseFloat(a.match(/[\d.]+/)[0])||a.length-b.length);
+    return c;
+  }catch(x){return[]}finally{clearTimeout(tm)}
+}
+async function candidates(){
+  if(!candCache)candCache=[...new Set([S.model,'gemini-flash-latest',...await listFlash(),'gemini-flash-lite-latest'])].filter(Boolean);
+  return candCache;
 }
 async function genDay(e,d,out){
   const p=(d.rev?'This is a revision day, so cover the same ideas from a fresh angle with different questions. ':'')+'You are a study coach. Using only the material below for the subject "'+e.subject+'", write (1) a clear study note in simple markdown (## headings and - bullets, about 300 words) and (2) exactly '+S.cards+' quiz questions. Each has "q", the correct answer "a" (short), and "w", an array of exactly 3 plausible wrong answers. Reply as JSON: {"note":"...","cards":[{"q":"...","a":"...","w":["...","...","..."]}]}\n\nMATERIAL:\n'+d.text.slice(0,14000);
-  let err='';
-  for(let a=0;a<4;a++){
-    const r=await callGemini(p,true);
+  const cand=await candidates();let err='';
+  for(let a=0;a<7;a++){
+    const m=cand[Math.min(cmi,cand.length-1)];
+    const r=await callGemini(p,true,m,TMO);
     if(r.ok){
       try{
         const t=r.j.candidates[0].content.parts.map(x=>x.text||'').join('');
         const o=JSON.parse(t.slice(t.indexOf('{'),t.lastIndexOf('}')+1));
         const cs=(o.cards||[]).filter(c=>c&&c.q&&c.a);
-        if(o.note&&cs.length){d.note=o.note;d.cards=cs;return ''}
+        if(o.note&&cs.length){d.note=o.note;d.cards=cs;if(m!==S.model){S.model=m;save();$('#md').value=m}return ''}
         err='The AI reply was incomplete.';
       }catch(x){err=r.j.promptFeedback&&r.j.promptFeedback.blockReason?'The request was blocked ('+r.j.promptFeedback.blockReason+').':'The AI reply could not be read.'}
       continue;
     }
     err=(r.j.error&&r.j.error.message)||('Error '+r.status);
-    if((r.status===404||(r.status===400&&/model|not found|supported/i.test(err)))&&!genDay.tried){genDay.tried=1;const m=await pickModel();if(m){S.model=m;save();$('#md').value=m;continue}}
-    if(r.status===429&&a<2||r.status>=500||r.status===0){out.textContent='Waiting a moment, then retrying...';await wait(r.status===429?30000:10000);continue}
+    const gone=r.status===404||(r.status===400&&/model|not found|supported/i.test(err));
+    if((gone||r.status===0)&&cmi<cand.length-1){cmi++;out.textContent='Trying another AI model...';continue}
+    if((r.status===429&&a<4)||r.status>=500||r.status===0){out.textContent='Waiting a moment, then retrying...';await wait(r.status===429?30000:RETRY);continue}
     break;
   }
   return err;
 }
-async function genAll(e,out){
-  const say=t=>{note=t;noteE=e;out.textContent=t};
-  if(!S.key){say('Add your free Gemini key in Settings, then tap Prepare missing days.');return false}
-  genDay.tried=0;
-  for(let i=0;i<e.days.length;i++){
-    const d=e.days[i];if(d.note)continue;
-    say('Preparing day '+(i+1)+' of '+e.days.length+'...');
-    const err=await genDay(e,d,out);
-    if(err){say('Stopped at day '+(i+1)+': '+err);return false}
-    save();await wait(3000);
-  }
-  say('All '+e.days.length+' days are ready.');return true;
+async function genAll(e,out,mode){
+  const say=t=>{note=t;noteE=e;out.textContent=t;const o=$('#ms');if(o&&o!==out)o.textContent=t};
+  if(!S.key){say('Add your free Gemini key in Settings, then tap Prepare.');return false}
+  if(genBusy){say('Another exam is being prepared right now. Try again in a moment.');return false}
+  genBusy=true;
+  try{
+    candCache=null;cmi=0;const t=today();
+    const due=e.days.filter(d=>!d.note&&(mode==='today'?d.date===t:d.date<=t));
+    for(let k=0;k<due.length;k++){
+      const d=due[k];
+      say(due.length>1?'Preparing day '+(k+1)+' of '+due.length+'...':'Preparing today\'s material...');
+      const tmp={text:d.text,rev:d.rev,note:null,cards:null},err=await genDay(e,tmp,out);
+      if(err){say('Stopped: '+err);return false}
+      const ce=S.exams.find(x=>x.id===e.id),cd=ce&&ce.days.find(x=>x.date===d.date);
+      if(cd){cd.note=tmp.note;cd.cards=tmp.cards}
+      save();if(k<due.length-1)await wait(PACE);
+    }
+    say(mode==='today'?'Today\'s material is ready. Each new day\'s is prepared when you open the app that day.':'Everything up to today is ready.');return true;
+  }finally{genBusy=false}
 }
-async function testKey(){
+async function autoToday(){
+  if(genBusy||!S.key||!user)return;
+  const t=today();
+  for(const e of S.exams.filter(x=>x.days.some(d=>!d.note&&d.date===t)))await genAll(e,document.createElement('span'),'today');
+  if(view==='app'&&!Q)render();
+}
+async function testKey(btn){
   if(!S.key){tell('Paste your Gemini key first.');return}
-  const r=await callGemini('Reply with the single word: ok',false);
-  if(r.ok){tell('Connected. The model '+S.model+' works.');return}
-  if(r.status===404){const m=await pickModel();if(m){S.model=m;save();$('#md').value=m;tell('That model is no longer available. Switched to '+m+'. Tap Test key again.');return}}
-  tell('Test failed: '+((r.j.error&&r.j.error.message)||('Error '+r.status)));
+  if(btn){btn.disabled=true;btn.textContent='Testing...'}
+  const L=[],sec=t=>((Date.now()-t)/1000).toFixed(1)+'s';
+  let t=Date.now();
+  candCache=null;cmi=0;
+  const flash=await listFlash();
+  L.push(flash.length?'1. Reaching Google: OK ('+sec(t)+')':'1. Reaching Google: no list came back ('+sec(t)+'). The key may be wrong, or your connection is blocking Google.');
+  const cand=await candidates();let ok=false;
+  for(const m of cand.slice(0,4)){
+    t=Date.now();const r=await callGemini('Reply with the single word: ok',false,m,Math.round(TMO*.6));
+    if(r.ok){L.push('2. Model '+m+': works ('+sec(t)+')');S.model=m;save();$('#md').value=m;ok=true;break}
+    L.push('2. Model '+m+': '+((r.j.error&&r.j.error.message)||('error '+r.status))+' ('+sec(t)+')');
+  }
+  if(btn){btn.disabled=false;btn.textContent='Test key'}
+  tell((ok?'Everything works.\n\n':'Not working yet.\n\n')+L.join('\n'));
 }
 async function addExam(){
   const sub=$('#sub').value.trim(),date=$('#dt').value,st=$('#st'),b=$('#go');
@@ -457,7 +490,7 @@ async function addExam(){
   if(text.trim().length<50){st.textContent='No text found. Scanned PDFs need OCR, which this version does not do.';b.disabled=false;return}
   if(text.length>200000){st.textContent='That is too much text for one exam (the limit is about 200,000 characters). Split it into two exams.';b.disabled=false;return}
   const e={id:newId(),subject:sub,date,text:text.trim(),days:[]};plan(e);S.exams.push(e);S.exams.sort((a,b)=>a.date.localeCompare(b.date));save();
-  const ok=await genAll(e,st);b.disabled=false;
+  await genAll(e,st,'today');b.disabled=false;
   ['sub','dt','paste','files'].forEach(i=>$('#'+i).value='');setDate('');
   cur=S.exams.indexOf(e);tab='exams';render();
 }
@@ -494,9 +527,9 @@ function dayHTML(ei,di){
 }
 function detail(ei){
   const e=S.exams[ei],t=today(),left=Math.max(0,diff(t,e.date));
-  const ti=e.days.findIndex(d=>d.date===t),miss=e.days.some(d=>!d.note);
+  const ti=e.days.findIndex(d=>d.date===t),miss=e.days.some(d=>!d.note&&d.date<=t);
   let h='<button class="lk" onclick="cur=null;render()">‹ Exams</button><h1 style="margin-top:14px">'+esc(e.subject)+'</h1><p class="sub">'+left+' day'+(left===1?'':'s')+' left. Exam on '+fmt(e.date)+'.</p>';
-  if(miss)h+='<div class="gap"><button class="b" id="mg" onclick="this.disabled=true;genAll(S.exams['+ei+'],$(\'#ms\')).then(render)">Prepare missing days</button><span class="mu" id="ms">'+(noteE===e?esc(note):'')+'</span></div>';
+  if(miss||(noteE===e&&note))h+='<div class="gap">'+(miss?'<button class="b" onclick="this.disabled=true;genAll(S.exams['+ei+'],$(\'#ms\'),\'due\').then(render)">Prepare today\'s material</button>':'')+'<span class="mu" id="ms">'+(noteE===e?esc(note):'')+'</span></div>';
   h+='<h2>Today</h2><div class="card">'+(ti>=0?dayHTML(ei,ti):'<p class="mu">Nothing assigned for today.</p>')+'</div>';
   const past=e.days.map((d,i)=>[d,i]).filter(x=>x[0].date<t),fut=e.days.filter(d=>d.date>t);
   if(past.length)h+='<h2>Earlier days</h2>'+past.map(x=>'<details class="card"><summary>'+fmt(x[0].date)+(x[0].scores.length?' · best '+Math.max(...x[0].scores)+'%':'')+'</summary>'+dayHTML(ei,x[1])+'</details>').join('');
@@ -623,7 +656,7 @@ function route(v){
     $('#ao').innerHTML=s?'Already have an account? <button class="lk" onclick="route(\'login\')">Log in</button>':'New here? <button class="lk" onclick="route(\'signup\')">Create an account</button>'+(CLOUD?'<br><button class="lk" onclick="forgot()">Forgot your password?</button>':'');
   }
   $('#am').hidden=true;
-  if(v==='app'){paintAv();render()}
+  if(v==='app'){paintAv();render();if(!CLOUD)autoToday()}
   scrollTo(0,0);
   const el=$(v==='app'?'main':v==='landing'?'#landing':'#authv');el.classList.remove('in');void el.offsetWidth;el.classList.add('in');
   try{history.replaceState(null,'',v==='login'||v==='signup'?'#'+v:location.pathname+location.search)}catch(e){}
@@ -677,7 +710,7 @@ function logout(){
   route('landing');
 }
 $('#sw').innerHTML=THEMES.map(t=>'<button class="sw" data-k="'+t[0]+'" onclick="setTheme(\''+t[0]+'\')"><span style="background:'+t[2]+'"></span>'+t[1]+'</button>').join('');
-buildFooter();if(CLOUD){
+document.title=SITE.name;document.querySelectorAll('.bn').forEach(x=>{x.textContent=SITE.name});buildFooter();if(CLOUD){
   view='loading';
   auth.onAuthStateChanged(u=>{
     stopSync();
